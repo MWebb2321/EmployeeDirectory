@@ -1,0 +1,26 @@
+{
+  "name": "employeedirectory",
+  "version": "1.0.0",
+  "description": "Creating an employee directory with React. This assignment will require breaking up the application's UI into components, manage component state, and respond to user events.",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MWebb2321/EmployeeDirectory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MWebb2321/EmployeeDirectory/issues"
+  },
+  "homepage": "https://github.com/MWebb2321/EmployeeDirectory#readme"
+}
