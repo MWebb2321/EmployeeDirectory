@@ -25,7 +25,7 @@ Use but give credit
 
 ## License
 
-This repository is licensed under the [!(https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) license.
+This repository is licensed under the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) license.
 
 ## Contribute
 
