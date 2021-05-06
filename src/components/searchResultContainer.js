@@ -7,6 +7,7 @@ const MaxResults = 20;
 
 class SearchResultContainer extends Component {
   state = {
+    search: "",
     result: [],
     filter: "",
     filterBy: "lastName",
