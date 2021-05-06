@@ -17,7 +17,7 @@ As a user, I want to be able to view my entire employee directory at once so tha
 
 ## Installation
 
-Be sure to install: npm i axios react react-dom bootstrap-react
+Be sure to install: npm i axios bootstrap bootstrap-react react react-dom react-script web-vitals
 
 ## Usage
 
