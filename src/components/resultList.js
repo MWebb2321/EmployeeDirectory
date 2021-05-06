@@ -2,22 +2,28 @@ import React from "react";
 
 function ResultList(props) {
   return (
-    <table className="table">
-      {props.results.map((result) => (
-        <table style="width:100%">
+    <table className="table table-hover">
+      <caption>List of employees</caption>
+      <thread class="thread-dark">
+        <tr>
+          <th>Profile Picture</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>State</th>
+          <th>Country</th>
+        </tr>
+      </thread>
+      <tbody>
+        {props.results.map((result) => (
           <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Age</th>
+            <td>
+              <img alt={result.name.first} src={result.name.last}></img>
+            </td>
           </tr>
-          <tr>
-            <td>John</td>
-            <td>Smith</td>
-            <td>50</td>
-          </tr>
-        </table>
-      ))}
-      {/* </ul> */}
+        ))}
+      </tbody>
     </table>
   );
 }

@@ -1,122 +1,52 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
-import EmployeeCard from "./EmployeeCard";
+import ResultList from "./ResultList";
 import API from "../utils/API";
-import "../styles/Result.css";
-const MaxResults = 20;
 
 class SearchResultContainer extends Component {
   state = {
     search: "",
-    result: [],
-    filter: "",
-    filterBy: "lastName",
-    currentSort: "default",
-    sortField: "",
+    results: [],
   };
 
   componentDidMount() {
-    API.search()
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          result: res.data.results.map((e, i) => ({
-            firstName: e.name.first,
-            lastName: e.name.last,
-            picture: e.picture.large,
-            email: e.email,
-            phone: e.phone,
-            dob: e.age,
-            key: i,
-          })),
-        });
-      })
-      .catch((err) => console.log(err));
+    this.searchEmployees("");
   }
 
-  filterEmployees = (searchkey) => {
-    console.log("***in Filter*******");
-    console.log(searchkey);
-    console.log(this.state.result);
-    var filterResult = this.state.result.filter(
-      (person) => person.firstName === searchkey
-    );
+  searchEmployees = (query) => {
+    API.search(query)
+      .then((res) => {
+        this.setState({ results: res.data.results });
+        console.log("searchresults res", res.data.results);
+      })
+      .catch((err) => console.log(err));
+  };
 
+  handleInputChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
     this.setState({
-      result: filterResult,
+      [name]: value,
     });
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const value = event.target.value;
-    const name = event.target.name;
-    console.log("**********");
-    console.log(value);
-    console.log(name);
-    this.filterEmployees(value);
-    this.setState({
-      [name]: value,
-    });
-    this.filterEmployees(value);
-    this.filterEmployees(this.state.search);
-  };
-
-  handleInputChange = (event) => {
-    event.preventDefault();
-    console.log(event);
-    const value = event.target.value;
-    const name = event.target.name;
-    console.log("**********");
-    console.log(value);
-    console.log(name);
-    this.setState({
-      [name]: value,
-    });
+    this.searchEmployees(this.state.search);
   };
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <h2>Employee Directory</h2>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-6">
-            <SearchForm
-              value={this.state.search}
-              handleInputChange={this.handleInputChange}
-              handleFormSubmit={this.handleFormSubmit}
-            />
-          </div>
-        </div>
-
-        <div className="row">
-          <table className="table">
-            <tr>
-              <th scope="col">Photo</th>
-              <th>First Name</th>
-              <th scope="col">Last Name </th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone</th>
-            </tr>
-
-            {[...this.state.result].map((item) => (
-              <EmployeeCard
-                picture={item.picture}
-                firstName={item.firstName}
-                lastName={item.lastName}
-                email={item.email}
-                phone={item.phone}
-                key={item.key}
-              />
-            ))}
-          </table>
-        </div>
+      <div>
+        <SearchForm
+          search={this.state.search}
+          handleFormSubmit={this.handleFormSubmit}
+          handleInputChange={this.handleInputChange}
+        />
+        <ResultList results={this.state.results} />
       </div>
     );
   }
 }
+
 export default SearchResultContainer;
